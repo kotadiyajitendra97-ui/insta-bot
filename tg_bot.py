@@ -171,7 +171,7 @@ def get_mtproto_client():
             from telethon.sync import TelegramClient
 
             _mtproto_client = TelegramClient(
-                "/tmp/instaauto_mtproto_bot",
+                "/tmp/@Instaffgram_bot",
                 TELEGRAM_API_ID,
                 TELEGRAM_API_HASH,
             )
