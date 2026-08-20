@@ -1,3 +1,5 @@
+import threading
+from worker import background_worker
 import os
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
@@ -180,6 +182,11 @@ def main():
         print("Error: TELEGRAM_BOT_TOKEN not found in environment variables.")
         return
     
+    # Background worker ko thread mein start karein
+    worker_thread = threading.Thread(target=background_worker, daemon=True)
+    worker_thread.start()
+    print("Background worker started inside web service!")
+    
     application = Application.builder().token(TOKEN).build()
     
     application.add_handler(CommandHandler("start", start))
@@ -190,4 +197,4 @@ def main():
     application.run_polling()
 
 if __name__ == "__main__":
-    main()                       
+    main()
