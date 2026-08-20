@@ -45,3 +45,13 @@ def clear_account_settings(owner_id: str):
     except Exception as e:
         print(f"Error clearing settings: {e}")
         return False
+
+# Naya function jo aapke bot ko chahiye taaki ImportError na aaye:
+def get_all_active_settings():
+    try:
+        supabase = get_supabase()
+        response = supabase.table("instagram_settings").select("*").execute()
+        return response.data if response.data else []
+    except Exception as e:
+        print(f"Error getting all active settings: {e}")
+        return []
