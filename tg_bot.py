@@ -194,7 +194,9 @@ def main():
     application.add_handler(MessageHandler(filters.TEXT | filters.PHOTO & ~filters.COMMAND, handle_incoming_message))
     
     print("Bot is running...")
-    application.run_polling()
+    
+    # Render ke timeout se bachne ke liye bot ko polling par daalein
+    application.run_polling(drop_pending_updates=True)
 
 if __name__ == "__main__":
     main()
